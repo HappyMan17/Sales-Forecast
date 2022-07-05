@@ -1,5 +1,6 @@
 package controller;
 
+import creadorDeArchivos.CreadorDeArchivos;
 import java.awt.event.ActionEvent;
 import model.ForecastModel;
 import view.ForecastView;
@@ -11,13 +12,15 @@ public class ForecastController {
 
     private ForecastModel model;
     private ForecastView view;
+    private CreadorDeArchivos archivo;
     private ArrayList<Year> years = new ArrayList<>();
     private int acumulator;
     private int contadorDeFilasTabla2;
 
-    public ForecastController(ForecastModel model, ForecastView view) {
+    public ForecastController(ForecastModel model, ForecastView view, CreadorDeArchivos archivo) {
         this.model = model;
         this.view = view;
+        this. archivo = archivo;
         this.acumulator = 0;
         this.contadorDeFilasTabla2 = 0;
 
@@ -120,10 +123,17 @@ public class ForecastController {
                 String txt = ""+number+"%";
                 view.setAverageGrowth(txt);
                 for(int i = 0; i < forecastYears; i++){
+                    Double result = model.calculateForecast(forecastYears);
+                    
                     view.printRowsTable2(years.get(contadorDeFilasTabla2),
-                        model.calculateForecast(forecastYears));
+                        result);
+                    
+                    archivo.añadirTxt(years.get(contadorDeFilasTabla2).getYearNumber()+" - "
+                        +result+"\n");
+                    
                     contadorDeFilasTabla2++;
                 }
+                archivo.añadirTxt("\n\n-----------Sales Forecast-----------\n\n");
             }
         }
     }

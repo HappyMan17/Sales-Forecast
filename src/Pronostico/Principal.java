@@ -5,6 +5,7 @@
 package Pronostico;
 
 import controller.ForecastController;
+import creadorDeArchivos.CreadorDeArchivos;
 import model.ForecastModel;
 import view.ForecastView;
 
@@ -20,7 +21,9 @@ public class Principal {
     public static void main(String[] args) {
         ForecastView view = new ForecastView();
         ForecastModel model = new ForecastModel();
-        ForecastController controller = new ForecastController(model, view);
+        CreadorDeArchivos archivo = new CreadorDeArchivos();
+        ForecastController controller = new ForecastController(model, view, archivo);
+        
     }
 
 }

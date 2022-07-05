@@ -34,14 +34,14 @@ public class ForecastModel {
 
     public void setYear(int newYear, int arrayPosition) {
         if (arrayPosition < 1 || arrayPosition > years.size()) {
-            System.out.println("nonas rey, posicion del array invalida");
+            System.out.println("Número de año invalido");
         }
         years.get(arrayPosition - 1).setYear(newYear);
     }
 
     public void deleteYear(int arrayPosition) {
         if (arrayPosition < 1 || arrayPosition > years.size()) {
-            System.out.println("nonas rey, posicion del array invalida");
+            System.out.println("Número de año invalido");
         }
         years.remove(arrayPosition - 1);
         updatePosition(arrayPosition);
@@ -56,7 +56,7 @@ public class ForecastModel {
     
     public void setNewSales(Double newSale, int arrayPosition){
         if (arrayPosition < 1 || arrayPosition > years.size()) {
-            System.out.println("nonas rey, posicion del array invalida");
+            System.out.println("Número de año invalido");
         }
         years.get(arrayPosition - 1).setSales(newSale);
     }
